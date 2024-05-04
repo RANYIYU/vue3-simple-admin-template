@@ -16,6 +16,7 @@ import pinia from '@/stores/index'
 import { authGuard } from '@/utils/authGuard'
 import { getSingleLevelResult } from '@/utils/extractLeafAndSingleLevelItems'
 import { useMenuStore } from '@/stores/modules/menu'
+// 自动导入elementUI
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
@@ -28,9 +29,10 @@ app.use(pinia)
 // 确保在 app.use(router) 之前调用因为路由注册前需要填充好
 const menuStore = useMenuStore()
 getSingleLevelResult(menuStore.getMenu(), router)
+
 app.use(router)
 
-app.mount('#app')
-
-// 用户登录权限跳转判断
+// 登录路由拦截
 authGuard()
+
+app.mount('#app')

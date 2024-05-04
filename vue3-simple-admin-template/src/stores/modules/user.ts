@@ -7,7 +7,7 @@ export const useUserStore = defineStore(
     // 1 token
     const token = ref<string>('')
     const getToken = () => {
-      const user = JSON.parse(localStorage.getItem('user')!)
+      const user = JSON.parse(localStorage.getItem('user') || '{}')
       return user?.token || token.value
     }
     const setToken = (newToken: string) => {

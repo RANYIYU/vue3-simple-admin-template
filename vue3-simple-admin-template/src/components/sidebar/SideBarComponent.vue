@@ -13,15 +13,6 @@ interface MenuItem {
   path: string
   children: MenuItem[]
 }
-// // noChild
-// const noChild = computed(() => {
-//   return props.menuList.filter((item) => item.children?.length === 0)
-// })
-//
-// // child
-// const child = computed(() => {
-//   return props.menuList.filter((item) => item.children?.length !== 0)
-// })
 // 2 动态判断是否折叠侧边栏
 const headerStore = useHeaderStore()
 const isCollapse = computed(() => {

@@ -13,8 +13,7 @@ export const useMenuStore = defineStore(
     }
     // 3 getMenu
     const getMenu = () => {
-      // 加！表示肯定不为空防止报错
-      const parse = JSON.parse(localStorage.getItem('menu')!)
+      const parse = JSON.parse(localStorage.getItem('menu') || '{}')
       // 但是实际上拿到的时候可能为空 加？表示如果为空就获取store中的数据
       return parse?.menu || menu.value
     }
@@ -25,7 +24,8 @@ export const useMenuStore = defineStore(
     return {
       menu,
       setMenu,
-      getMenu
+      getMenu,
+      removeMenu
     }
   },
   {

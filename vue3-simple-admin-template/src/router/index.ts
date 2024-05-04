@@ -1,13 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import login from '@/views/login/LoginComponent.vue'
+import layout from '@/views/layout/LayoutComponent.vue'
 
+// 登录之后根据各自权限跳转到各自的第一个页面
+const defaultActiveMenu = JSON.parse(localStorage.getItem('defaultActiveMenu') || '{}')
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/layout',
+      path: '/login',
+      name: 'login',
+      component: login
+    },
+    {
+      path: '/',
       name: 'layout',
-      component: () => import('@/views/layout/LayoutComponent.vue'),
-      redirect: '/report',
+      component: layout,
+      redirect: defaultActiveMenu?.path || '/login',
       children: [
         // {
         //   path: '/home',
@@ -20,11 +29,6 @@ const router = createRouter({
         //   component: () => import('@/views/report/ReportComponent.vue')
         // }
       ]
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('@/views/login/LoginComponent.vue')
     }
   ]
 })

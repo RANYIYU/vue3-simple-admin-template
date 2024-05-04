@@ -4,7 +4,6 @@ import { useHeaderStore } from '@/stores'
 import type { MenuItem } from '@/types/menuItem'
 import { useRouter } from 'vue-router'
 import { clearLocalStorage } from '@/utils/clearLocalStorage'
-import { useUserStore } from '@/stores/modules/user'
 
 // 1 展开或者折叠
 const headerStore = useHeaderStore()

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SideBarComponent from '@/components/sidebar/SideBarComponent.vue'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import HeaderComponent from '@/components/header/HeaderComponent.vue'
 import { useMenuStore } from '@/stores/modules/menu'
 // todo 假设请求来了菜单数据 动态渲染menu

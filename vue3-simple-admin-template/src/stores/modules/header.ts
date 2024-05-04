@@ -5,16 +5,17 @@ import type { MenuItem } from '@/types/menuItem'
 export const useHeaderStore = defineStore(
   'header',
   () => {
+    const defaultActiveMenu = JSON.parse(localStorage.getItem('defaultActiveMenu') || '{}')
     // 1 sidebar是否折叠
     const isCollapse = ref<boolean>(false)
     // 2 面包屑导航列表
     const breadcrumbList = ref<MenuItem[]>([
       {
-        title: '首页',
-        path: '/',
-        icon: '',
+        title: defaultActiveMenu.title,
+        path: defaultActiveMenu.path,
+        icon: 'null',
         children: [],
-        name: 'home'
+        name: defaultActiveMenu.name
       }
     ])
     // 3 修改面包屑导航列表
@@ -85,17 +86,29 @@ export const useHeaderStore = defineStore(
       //   }
       // }
     }
-    // 4 tag
+    // 4 清空面包屑导航列表
+    const clearBreadcrumbList = (): void => {
+      breadcrumbList.value = [
+        {
+          title: defaultActiveMenu.title,
+          path: defaultActiveMenu.path,
+          icon: 'null',
+          children: [],
+          name: defaultActiveMenu.name
+        }
+      ]
+    }
+    // 1 tag
     const tagList = ref<MenuItem[]>([
       {
-        title: '首页',
-        path: '/',
-        icon: '',
+        title: defaultActiveMenu.title,
+        path: defaultActiveMenu.path,
+        icon: 'null',
         children: [],
-        name: 'home'
+        name: defaultActiveMenu.name
       }
     ])
-    // 5 修改tag
+    // 2 修改tag
     const setTagList = (item: MenuItem): void => {
       const isExists = tagList.value.find((tag: MenuItem): boolean => {
         return tag.title === item.title
@@ -105,11 +118,23 @@ export const useHeaderStore = defineStore(
         tagList.value.push(item)
       }
     }
-    // 6 移除tag
+    // 3 click移除tag
     const removeTag = (item: MenuItem): void => {
       tagList.value = tagList.value.filter((tag: MenuItem): boolean => {
         return tag.title !== item.title
       })
+    }
+    // 4 清空tag
+    const clearTag = (): void => {
+      tagList.value = [
+        {
+          title: defaultActiveMenu.title,
+          path: defaultActiveMenu.path,
+          icon: 'null',
+          children: [],
+          name: defaultActiveMenu.name
+        }
+      ]
     }
     return {
       isCollapse,
@@ -117,7 +142,9 @@ export const useHeaderStore = defineStore(
       setBreadcrumbList,
       tagList,
       setTagList,
-      removeTag
+      removeTag,
+      clearBreadcrumbList,
+      clearTag
     }
   },
   {

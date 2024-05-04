@@ -135,7 +135,9 @@ const login = async (formEl: FormInstance | undefined) => {
       localStorage.setItem('defaultActiveMenu', JSON.stringify(result[0]))
       // 成功之后跳转
       console.log('登录成功!')
-      await router.push('/layout')
+      // 跳转到第一个菜单页面
+      console.log(result[0].path)
+      await router.push(result[0].path)
     } else {
       console.log('登录错误!', fields)
     }
@@ -184,7 +186,7 @@ const login = async (formEl: FormInstance | undefined) => {
   .bg {
     background:
       url('@/assets/logo2.png') no-repeat 60% center / 240px auto,
-      url('@/assets/login_bg.jpg') no-repeat center / cover;
+      url('@/assets/login_bg.svg') no-repeat center / cover;
     border-radius: 0 20px 20px 0;
   }
   .form {
