@@ -3,7 +3,7 @@
  */
 export interface MenuItem {
   title: string
-  icon: string
+  icon: any
   path: string
   name: string
   component?: any

@@ -2,17 +2,11 @@
 import { defineProps, computed } from 'vue'
 import RecursiveMenuComponent from '@/components/sidebar/RecursiveMenuComponent.vue'
 import { useHeaderStore } from '@/stores/modules/header'
+import type { MenuItem } from '@/types/menuItem'
 // 1 泛型自变量
 const props = defineProps<{
   menuList: MenuItem[]
 }>()
-// 指定item的类型
-interface MenuItem {
-  title: string
-  icon: string
-  path: string
-  children: MenuItem[]
-}
 // 2 动态判断是否折叠侧边栏
 const headerStore = useHeaderStore()
 const isCollapse = computed(() => {

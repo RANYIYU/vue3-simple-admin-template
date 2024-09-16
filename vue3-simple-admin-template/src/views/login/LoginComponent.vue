@@ -15,7 +15,7 @@ import {
 const menuData = ref<MenuItem[]>([
   {
     title: '哈哈我是第一个数据',
-    icon: 'el-icon-menu',
+    icon: 'User',
     path: '/report',
     name: 'report'
   },
@@ -29,31 +29,31 @@ const menuData = ref<MenuItem[]>([
     children: [
       {
         title: '主页',
-        icon: 'el-icon-s-home',
+        icon: 'Notification',
         path: '/home1',
         name: 'home',
         children: [
           {
             title: '主页子页面1',
-            icon: 'el-icon-s-home',
+            icon: 'location',
             path: '/home',
             name: 'home'
           },
           {
             title: '主页子页面2',
-            icon: 'el-icon-s-home',
+            icon: 'location',
             path: '/home2',
             name: 'home',
             children: [
               {
                 title: '主页子页面2的子页面1',
-                icon: 'el-icon-s-home',
+                icon: 'location',
                 path: '/home3',
                 name: 'home4'
               },
               {
                 title: '主页子页面2的子页面2',
-                icon: 'el-icon-s-home',
+                icon: 'Search',
                 path: '/home123',
                 name: 'home5'
               }
@@ -63,19 +63,19 @@ const menuData = ref<MenuItem[]>([
       },
       {
         title: '子页面2',
-        icon: 'el-icon-s-home',
+        icon: 'Search',
         path: '/home12',
         name: 'home7',
         children: [
           {
             title: '子页面2的子页面1',
-            icon: 'el-icon-s-home',
+            icon: 'Search',
             path: '/home3',
             name: 'home8'
           },
           {
             title: '子页面2的子页面2',
-            icon: 'el-icon-s-home',
+            icon: 'Search',
             path: '/home34',
             name: 'home0'
           }

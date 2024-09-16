@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref, watch } from 'vue'
+import { defineProps, markRaw } from 'vue'
 import RecursiveMenuComponent from '@/components/sidebar/RecursiveMenuComponent.vue'
 import { useRouter } from 'vue-router'
 import type { MenuItem } from '@/types/menuItem'
@@ -45,7 +45,9 @@ const menuClick = (item: MenuItem) => {
     <el-sub-menu v-if="item.children" :index="item.title">
       <!--二级菜单标题和图标-->
       <template #title>
-        <el-icon><FullScreen /></el-icon>
+        <el-icon>
+          <component :is="markRaw(item.icon)" />
+        </el-icon>
         <!--<component class="myLogo" :is="item.icon" />-->
         <span>{{ item.title }}</span>
       </template>
@@ -59,7 +61,9 @@ const menuClick = (item: MenuItem) => {
     </el-sub-menu>
     <!--一级菜单-->
     <el-menu-item @click="menuClick(item)" v-else :index="item.title">
-      <el-icon><FullScreen /></el-icon>
+      <el-icon>
+        <component :is="markRaw(item.icon)" />
+      </el-icon>
       <template #title>{{ item.title }}</template>
     </el-menu-item>
   </template>
@@ -73,7 +77,7 @@ const menuClick = (item: MenuItem) => {
 }
 // 1 初始化item的默认宽度
 .el-menu-item {
-  margin: 5px 0 0 5px;
+  margin: 5px 5px 0 5px;
 }
 // 2 点击后的item背景色
 .el-menu-item.is-active {
